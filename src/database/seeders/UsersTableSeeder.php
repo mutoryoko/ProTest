@@ -35,22 +35,6 @@ class UsersTableSeeder extends Seeder
                 'updated_at' => now(),
                 'email_verified_at' => now(),
             ],
-            [
-                'name' => '伊藤四郎',
-                'email' => 'shiro@seeder.com',
-                'password' => Hash::make('password4'),
-                'created_at' => now(),
-                'updated_at' => now(),
-                'email_verified_at' => null,
-            ],
-            [
-                'name' => '稲垣五郎',
-                'email' => 'goro@seeder.com',
-                'password' => Hash::make('password5'),
-                'created_at' => now(),
-                'updated_at' => now(),
-                'email_verified_at' => null,
-            ],
         ]);
     }
 }

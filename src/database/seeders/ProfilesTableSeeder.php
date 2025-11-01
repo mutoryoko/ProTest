@@ -37,24 +37,6 @@ class ProfilesTableSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            [
-                'user_id' => 4,
-                'user_image' => 'profile-images/user4.png',
-                'postcode' => '334-5566',
-                'address' => '宮崎県宮崎市東大淀3-20-20',
-                'building' => 'ABCハイツ201',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
-            [
-                'user_id' => 5,
-                'user_image' => 'profile-images/user5.png',
-                'postcode' => '445-6677',
-                'address' => '高知県高岡郡中土佐町大野見島ノ川598-18',
-                'building' => null,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
         ]);
     }
 }

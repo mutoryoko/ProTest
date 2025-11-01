@@ -46,7 +46,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 2,
+                'user_id' => 1,
                 'item_name' => '革靴',
                 'item_image' => 'item-images/LeatherShoes.jpg',
                 'condition' => 4,
@@ -57,7 +57,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 2,
+                'user_id' => 1,
                 'item_name' => 'ノートPC',
                 'item_image' => 'item-images/Laptop.jpg',
                 'condition' => 1,
@@ -68,7 +68,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 3,
+                'user_id' => 2,
                 'item_name' => 'マイク',
                 'item_image' => 'item-images/Mic.jpg',
                 'condition' => 2,
@@ -79,7 +79,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 3,
+                'user_id' => 2,
                 'item_name' => 'ショルダーバッグ',
                 'item_image' => 'item-images/bag.jpg',
                 'condition' => 3,
@@ -90,7 +90,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 3,
+                'user_id' => 2,
                 'item_name' => 'タンブラー',
                 'item_image' => 'item-images/Tumbler.jpg',
                 'condition' => 4,
@@ -101,7 +101,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 4,
+                'user_id' => 2,
                 'item_name' => 'コーヒーミル',
                 'item_image' => 'item-images/Coffee.jpg',
                 'condition' => 1,
@@ -112,7 +112,7 @@ class ItemsTableSeeder extends Seeder
                 'updated_at' => now(),
             ],
             [
-                'user_id' => 4,
+                'user_id' => 2,
                 'item_name' => 'メイクセット',
                 'item_image' => 'item-images/makeup.jpg',
                 'condition' => 2,

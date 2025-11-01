@@ -1,4 +1,4 @@
-# COACHTECH フリマ
+# 新COACHTECH フリマ（機能追加）
 
 ## 概要
 本アプリは、ユーザーが商品を出品・購入できるフリマアプリです。
@@ -14,16 +14,18 @@
 
 #### 実行環境
 <ul>
-	<li>PHP: 8.1</li>
-	<li>mysql: 8.0.26</li>
-	<li>nginx:1.21.1</li>
 	<li>Laravel Framework: 9.52.20</li>
+	<li>PHP: 8.1</li>
+	<li>nginx: 1.21.1</li>
+	<li>mysql: 8.0.26</li>
+	<li>mail: Mailhog</li>
 </ul>
 
 #### URL
 <ul>
 	<li>開発環境: <a href="http://localhost">http://localhost</a> </li>
 	<li>phpmyadmin: <a href="http://localhost:8080">http://localhost:8080</a> </li>
+	<li>Mailhog: <a href="http://localhost:8025">http://localhost:8025</a></li>
 </ul>
 
 #### ER図
@@ -33,7 +35,7 @@
 
 ## Dockerビルド
 ```
-git clone git@github.com:mutoryoko/FleaMarket.git
+git clone git@github.com:mutoryoko/ProTest.git
 docker compose up -d --build
 ```
 &nbsp;
@@ -43,21 +45,11 @@ docker compose exec php bash
 composer install
 cp .env.example .env
 ```
-.envファイルにメールと決済機能の設定を追加する。
 
 ### メールの設定
 
-メール機能はMailtrapを想定。アカウント作成後、下記を参考に.envファイルを編集する。
-```
-MAIL_MAILER=smtp
-MAIL_HOST=sandbox.smtp.mailtrap.io
-MAIL_PORT=587または2525
-MAIL_USERNAME=Mailtrapのユーザー名
-MAIL_PASSWORD=Mailtrapのパスワード
-MAIL_ENCRYPTION=tls　（Laravel9〜は省略可）
-MAIL_FROM_ADDRESS="no-reply@example.com"
-MAIL_FROM_NAME="${APP_NAME}"
-```
+メール機能はMailhogを使用。<br />
+.envファイルのMAIL_FROM_ADDRESSは任意のアドレスに変更可。
 
 ### Stripeの設定
 
@@ -66,7 +58,6 @@ MAIL_FROM_NAME="${APP_NAME}"
 STRIPE_KEY=テスト用の公開可能キー
 STRIPE_SECRET_KEY=テスト用のシークレットキー
 ```
-
 &nbsp;
 
 .envファイルを編集後、以下のコマンドを実行。
@@ -115,25 +106,20 @@ php artisan test
 &nbsp;
 
 ## Seederファイルについて
-UsersTableSeederには以下の5名が登録されている。<br />
-未認証のユーザーはメール認証機能の確認に使用できる。
+UsersTableSeederには以下の3名が登録されている。
 
-| ユーザー名 | メールアドレス | パスワード | メール認証の済否 |
-| :---: | :---: | :---: | :---: |
-| 鈴木一郎 | ichiro@seeder.com | password1 | 認証済 |
-| 佐藤二郎 | jiro@seeder.com | password2 | 認証済 |
-| 北島三郎 | saburo@seeder.com | password3 | 認証済 |
-| 伊藤四郎 | shiro@seeder.com | password4 | 未認証 |
-| 稲垣五郎 | goro@seeder.com | password5 | 未認証 |
+| ユーザー名 | メールアドレス | パスワード |
+| :---: | :---: | :---: |
+| 鈴木一郎 | ichiro@seeder.com | password1 |
+| 佐藤二郎 | jiro@seeder.com | password2 |
+| 北島三郎 | saburo@seeder.com | password3 |
 
 デフォルトで各ユーザーが出品している商品は以下の通り。
 | ユーザー名 | 出品した商品 |
 | :---: | :---: |
-| 鈴木一郎 | 腕時計・HDD・玉ねぎ3束 |
-| 佐藤二郎 | 革靴・ノートPC |
-| 北島三郎 | マイク・ショルダーバッグ・タンブラー |
-| 伊藤四郎 | コーヒーミル・メイクセット |
-| 稲垣五郎 | なし |
+| 鈴木一郎 | 腕時計・HDD・玉ねぎ3束・革靴・ノートPC |
+| 佐藤二郎 | マイク・ショルダーバッグ・タンブラー・コーヒーミル・メイクセット |
+| 北島三郎 | なし |
 
 &nbsp;
 
