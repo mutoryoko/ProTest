@@ -1,0 +1,23 @@
+.content {
+    text-align: center;
+    padding: 100px 60px;
+}
+
+.thanks {
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgba(255, 85, 85, 0.7);
+    margin-bottom: 20px;
+}
+
+.head {
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+
+.back__link {
+    display: block;
+    color: rgb(0, 115, 204);
+    margin-top: 25px;
+}

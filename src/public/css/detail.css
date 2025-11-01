@@ -1,0 +1,259 @@
+.content {
+    display: flex;
+    justify-content: center;
+    padding: 60px 80px;
+}
+
+/* 商品画像 */
+.item-image__wrapper {
+    width: 40%;
+    padding: 20px;
+}
+
+.item-image {
+    width: 90%;
+    height: 450px;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* 商品説明・情報 */
+.item-info__wrapper {
+    width: 40%;
+}
+
+.item-name {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.item-price {
+    font-size: 32px;
+    margin: 20px 0;
+}
+
+.yen, .tax {
+    font-size: 24px;
+}
+
+/* いいね・コメント */
+.likes-comments__icons {
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+}
+
+.like-btn {
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.like-icon {
+    width: 30px;
+    margin-right: 60px;
+}
+
+.like-icon__img {
+    width: 100%;
+}
+
+.comment-icon {
+    width: 30px;
+}
+
+.comment-icon__img {
+    width: 100%;
+}
+
+.count {
+    text-align: center;
+}
+
+/* 購入ボタン*/
+.purchase__btn {
+    display: block;
+    text-align: center;
+    background-color: rgb(255, 85, 85);
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px 0 30px;
+}
+
+/* 売り切れボタン */
+.isSold {
+    width: 100%;
+    background: rgb(153, 153, 153);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    padding: 10px;
+    margin: 20px 0 30px;
+}
+
+.ttl {
+    font-size: 26px;
+    margin-bottom: 24px;
+}
+
+.description-content {
+    margin-bottom: 30px;
+}
+
+.small-ttl {
+    font-size: 18px;
+    margin-right: 40px;
+}
+
+.category, .condition {
+    display: flex;
+    align-items: center;
+}
+
+.category {
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+}
+
+.condition {
+    margin-bottom: 30px;
+}
+
+.category__name {
+    background-color: rgb(226, 226, 226);
+    font-size: 14px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin: 0 10px 5px 0;
+}
+
+/* コメント欄 */
+.item-comments {
+    margin-bottom: 40px;
+}
+
+.comments-counter {
+    font-size: 24px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    margin: 20px 0 10px;
+}
+
+.user-image__wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+.user-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.comment__content {
+    width: 100%;
+    background: rgb(226, 226, 226);
+    border-radius: 3px;
+    line-height: 1.5;
+    padding: 10px 15px;
+}
+
+.no-comment {
+    margin: 20px 15px 0;
+}
+
+.form-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.comment__text {
+    width: 100%;
+    padding: 10px;
+}
+
+.comment__btn {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 85, 85);
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+
+/* タブレット表示 */
+@media screen and (max-width: 850px) {
+    .content {
+        justify-content: space-between;
+        padding: 30px;
+    }
+
+    .item-image__wrapper {
+        width: 43%;
+    }
+
+    .item-image {
+        height: 300px;
+    }
+
+    .item-info__wrapper {
+        width: 52%;
+    }
+
+    .item-name {
+        font-size: 30px;
+    }
+
+    .item-brand {
+        font-size: 14px;
+    }
+
+    .item-price {
+        font-size: 28px;
+    }
+
+    .yen, .tax {
+        font-size: 20px;
+    }
+
+    .purchase__btn {
+        font-size: 18px;
+    }
+
+    .ttl {
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .small-ttl,
+    .form-label,
+    .comment__btn {
+        font-size: 16px;
+    }
+
+    .comments-counter {
+        font-size: 24px;
+    }
+}

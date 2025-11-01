@@ -1,0 +1,105 @@
+.profile__wrapper {
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px auto;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-image__wrapper {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 40px;
+}
+
+.user-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-name {
+    font-size: 28px;
+}
+
+.edit__btn {
+    height: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(255, 85, 85);
+    text-align: center;
+    border: 2px solid rgb(255, 85, 85);
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 30px;
+}
+
+/* タブ */
+.tabs {
+    border-bottom: 1px solid #000;
+    padding-left: 100px;
+}
+
+.tab__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px 40px;
+    padding: 50px 60px;
+    margin: 0 auto;
+}
+
+.sell-tab,
+.buy-tab {
+    display: inline-block;
+    color: #000;
+    background: transparent;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 10px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.tabs .active {
+    color: rgb(255, 85, 85);
+}
+
+/* タブレット表示 */
+@media screen and (max-width: 850px) {
+    .profile__wrapper {
+        width: 80%;
+    }
+
+    .user-image__wrapper {
+        width: 90px;
+        height: 90px;
+        margin-right: 30px;
+        font-size: 32px;
+    }
+
+    .user-name {
+        font-size: 24px;
+    }
+
+    .edit__btn {
+        font-size: 16px;
+        height: 16px;
+        padding: 10px 15px;
+    }
+
+    .tabs {
+        padding-left: 40px;
+    }
+
+    .tab-content {
+        gap: 40px 5%;
+        padding: 30px 40px;
+    }
+}

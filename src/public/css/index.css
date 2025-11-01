@@ -1,0 +1,45 @@
+.tabs {
+    border-bottom: 1px solid #000;
+    padding: 40px 0 0 100px;
+}
+
+.tab__content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 60px 40px;
+    padding: 50px 60px;
+    margin: 0 auto;
+}
+
+.recommend-tab,
+.myList-tab {
+    display: inline-block;
+    color: #000;
+    background: transparent;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 10px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+.tabs .active {
+    color: rgb(255, 85, 85);
+}
+
+.sold {
+    color: red;
+    margin-left: 10px;
+}
+
+/* タブレット表示 */
+@media screen and (max-width: 850px) {
+    .tabs {
+        padding: 20px 0 0 40px;
+    }
+
+    .tab__content {
+        gap: 40px 5%;
+        padding: 30px 40px;
+    }
+}

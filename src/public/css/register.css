@@ -1,0 +1,27 @@
+.search-form,
+.header__nav {
+    display: none;
+}
+
+.content {
+    padding: 60px 0;
+}
+
+.title {
+    width: 680px;
+    font-size: 40px;
+    text-align: center;
+    margin: 0 auto 60px;
+}
+
+.register__btn {
+    margin-top: 40px;
+}
+
+/* タブレット表示 */
+@media screen and (max-width: 850px) {
+    .title {
+        width: 60%;
+        font-size: 32px;
+    }
+}

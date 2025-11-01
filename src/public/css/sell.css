@@ -1,0 +1,150 @@
+.content {
+    padding: 60px 0;
+}
+
+.title {
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+.sell-form {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.form__label {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.item-image__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px dotted #000;
+    box-sizing: border-box;
+    padding: 30px 20px;
+}
+
+.upload-btn__wrapper {
+    margin: 15px auto;
+}
+
+.file__upload-btn {
+    display: inline-block;
+    width: 130px;
+    font-size: 18px;
+    font-weight: bold;
+    color: rgb(255, 85, 85);
+    text-align: center;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border: 2px solid rgb(255, 85, 85);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.file-name {
+    width: 200px;
+    font-size: 14px;
+}
+
+.sub-ttl {
+    font-size: 24px;
+    padding: 10px 0;
+    border-bottom: 1px solid #000;
+    margin: 40px 0 30px;
+}
+
+/* カテゴリー選択 */
+.category__ttl {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.category__check {
+    display: none;
+}
+
+.category__label {
+    display: inline-block;
+    border: 1.5px solid rgb(255, 85, 85);
+    border-radius: 30px;
+    color: rgb(255, 85, 85);
+    padding: 6px 15px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.category__check:checked + .category__label {
+    background: rgb(255, 85, 85);
+    color: #fff;
+}
+
+.condition__ttl {
+    font-size: 18px;
+    margin: 30px 0 8px;
+}
+
+.form__select {
+    width: 100%;
+    padding: 10px;
+}
+
+.form__item {
+    margin-bottom: 24px;
+}
+
+.form__item:last-of-type {
+    margin-bottom: 40px;
+}
+
+.form__item--input,
+.form__item--textarea {
+    width: 100%;
+    padding: 10px;
+}
+
+/* 販売価格欄に¥マーク */
+.price-form {
+    position: relative;
+}
+
+.price-input {
+    padding-left: 30px;
+}
+
+.yen {
+    position: absolute;
+    top: 35px;
+    left: 10px;
+    font-size: 18px;
+}
+
+@media screen and (max-width: 850px) {
+    .content {
+        padding: 40px 0;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .sell-form {
+        width: 90%;
+    }
+
+    .form__label {
+        font-size: 16px;
+    }
+
+    .item-image__wrapper {
+        padding: 15px;
+    }
+
+    .file__upload-btn {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

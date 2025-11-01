@@ -1,0 +1,191 @@
+.header {
+    background-color: #000;
+}
+
+.header__inner {
+    max-width: 1540px;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 30px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.header__logo {
+    margin-right: 15px;
+}
+
+.search-form {
+    width: 30%;
+    margin-right: 15px;
+}
+
+.search-form__input {
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 15px;
+}
+
+.auth-user__function {
+    display: flex;
+    align-items: center;
+}
+
+.logout__btn,
+.login__btn,
+.mypage__btn {
+    border: none;
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    margin-right: 20px;
+}
+
+.logout__btn {
+    background-color: #000;
+    cursor: pointer;
+}
+
+.sell-items__btn {
+    display: inline-block;
+    background-color: #fff;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+}
+
+.content {
+    max-width: 1540px;
+    margin: 0 auto;
+}
+
+/* ユーザー登録・ログイン・住所変更ページ */
+.user-form {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.user-form__item {
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.user-form__label {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.user-form__input {
+    width: 680px;
+    padding: 10px;
+    margin-top: 6px;
+}
+
+.submit__btn {
+    width: 100%;
+    background-color: rgb(255, 85, 85);
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.user-form__link {
+    display: block;
+    margin-top: 30px;
+    text-align: center;
+    color: rgb(0, 115, 204);
+}
+
+.error {
+    color: red;
+    margin-top: 5px;
+}
+
+.session {
+    color: lightseagreen;
+    font-weight: bold;
+    padding: 20px 40px;
+}
+
+/* 商品画像表示 */
+.item-card {
+    width: calc(100% / 4 - 30px);
+    cursor: pointer;
+}
+
+.item-card:hover {
+    opacity: 0.8;
+}
+
+.item-image__wrapper {
+    width: 100%;
+}
+
+.item-image {
+    width: 100%;
+    height: 270px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.item-name {
+    font-size: 18px;
+    font-weight: normal;
+    padding-top: 5px;
+}
+
+/* タブレット表示 */
+@media screen and (max-width: 850px) {
+    .header__inner {
+        max-width: 850px;
+        padding: 10px 20px;
+    }
+
+    .header__logo {
+        width: 220px;
+    }
+
+    .logout__btn,
+    .login__btn,
+    .mypage__btn {
+        font-size: 16px;
+        margin-right: 10px;
+    }
+
+    .sell-items__btn {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .user-form {
+        width: 60%;
+        margin: 0 auto;
+    }
+
+    .user-form__label {
+        font-size: 16px;
+    }
+
+    .user-form__input {
+        width: 100%;
+    }
+
+    .submit__btn {
+        font-size: 16px;
+    }
+
+    .item-card {
+        width: 30%;
+    }
+
+    .item-image {
+        height: 200px;
+    }
+}
