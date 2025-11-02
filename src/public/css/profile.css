@@ -43,7 +43,7 @@
 
 /* タブ */
 .tabs {
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid rgb(95, 95, 95);
     padding-left: 100px;
 }
 
@@ -56,19 +56,20 @@
 }
 
 .sell-tab,
-.buy-tab {
+.buy-tab,
+.progress-tab {
     display: inline-block;
-    color: #000;
+    color: rgb(95, 95, 95);
     background: transparent;
     font-size: 18px;
     font-weight: bold;
     padding: 10px 10px;
-    margin-right: 30px;
+    margin-right: 40px;
     cursor: pointer;
 }
 
 .tabs .active {
-    color: rgb(255, 85, 85);
+    color: red;
 }
 
 /* タブレット表示 */

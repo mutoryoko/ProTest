@@ -15,8 +15,15 @@ class TransactionTabs extends Component
     public function mount()
     {
         $page = Request::query('page');
-        if (in_array($page, ['sell', 'buy'])) {
-            $this->tab = $page === 'sell' ? 'selling' : 'buying';
+        if (in_array($page, ['sell', 'buy', 'in_progress'])) {
+            if($page === 'sell'){
+                $this->tab = 'selling';
+            } elseif($page === 'buy'){
+                $this->tab = 'buying';
+            } else {
+                $this->tab = 'in_progress';
+            }
+            // $this->tab = $page === 'sell' ? 'selling' : 'buying';
         }
     }
 

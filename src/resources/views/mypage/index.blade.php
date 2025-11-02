@@ -17,8 +17,14 @@
                     <img class="user-img" src="{{ asset('storage/profile-images/no-image.png') }}" alt="no-image">
                 @endif
             </div>
-            <h1 class="user-name">{{ $user->name }}</h1>
+            <div>
+                <h1 class="user-name">{{ $user->name }}</h1>
+                <div class="rating">
+                    ★★★★★
+                </div>
+            </div>
         </div>
+
         <div>
             <a class="edit__btn" href="{{ route('mypage.profile.edit') }}">プロフィールを編集</a>
         </div>

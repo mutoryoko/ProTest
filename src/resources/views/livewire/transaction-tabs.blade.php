@@ -6,6 +6,9 @@
         <a href="{{ route('mypage.index', ['page' => 'buy']) }}" class="{{ $tab === 'buying' ? 'active' : '' }} buy-tab">
             購入した商品
         </a>
+        <a href="{{ route('mypage.index', ['page' => 'in_progress']) }}" class="{{ $tab === 'in_progress' ? 'active' : '' }} progress-tab">
+            取引中の商品
+        </a>
     </div>
 
     <div class="tab__content mt-4">
@@ -34,6 +37,20 @@
                 </div>
             @empty
                 <p>購入した商品がありません。</p>
+            @endforelse
+        @elseif ($tab === 'in_progress')
+            {{-- 以下は仮状態。transactionからアイテム取得予定 --}}
+            @forelse ($buyingItems as $buyingItem)
+                <div class="item-card">
+                    <div class="item-image__wrapper">
+                        <a href="{{ route('detail', ['item_id' => $buyingItem->id]) }}">
+                            <img class="item-image" src="{{ asset('storage/'.$buyingItem->item_image) }}" alt="商品画像">
+                        </a>
+                    </div>
+                    <p class="item-name">{{ $buyingItem->item_name }}</p>
+                </div>
+            @empty
+                <p>取引中の商品がありません。</p>
             @endforelse
         @endif
     </div>
