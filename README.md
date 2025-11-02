@@ -10,6 +10,9 @@
 	<li>商品の出品（画像アップロード、カテゴリー・商品の状態設定、価格入力等）</li>
 	<li>商品購入機能（Stripeを利用した決済）</li>
 	<li>マイページ機能（出品商品、購入商品一覧の確認）</li>
+	<li>商品購入後の取引チャット機能（編集・削除可能）　<span style="color: red;">NEW!</span></li>
+	<li>取引評価機能　<span style="color: red;">NEW!</span></li>
+	<li>取引完了のメール送信機能　<span style="color: red;">NEW!</span></li>
 </ul>
 
 #### 実行環境
@@ -29,7 +32,7 @@
 </ul>
 
 #### ER図
-<img src="ER.drawio.svg" width=70% />
+<img src="ER.drawio.svg" width=85% />
 
 &nbsp;
 

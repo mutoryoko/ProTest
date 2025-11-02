@@ -28,4 +28,14 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class, 'buyer_id');
     }
+
+    public function chat()
+    {
+        return $this->hasOne(Chat::class);
+    }
+
+    public function rating()
+    {
+        return $this->hasOne(Rating::class);
+    }
 }

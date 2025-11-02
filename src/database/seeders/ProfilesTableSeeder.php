@@ -15,7 +15,7 @@ class ProfilesTableSeeder extends Seeder
                 'user_image' => 'profile-images/user1.png',
                 'postcode' => '123-4567',
                 'address' => '北海道目梨郡羅臼町松法町591-4',
-                'building' => null,
+                'building' => 'ABCマンション201',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

@@ -35,11 +35,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -49,6 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->notify(new VerifyEmailCustom);
     }
 
+    // リレーション
     public function items()
     {
         return $this->hasMany(Item::class);
@@ -77,5 +73,20 @@ class User extends Authenticatable implements MustVerifyEmail
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'buyer_id');
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class, 'rater_id');
+    }
+
+    public function ratedBy()
+    {
+        return $this->hasMany(Rating::class, 'rated_user_id');
     }
 }
