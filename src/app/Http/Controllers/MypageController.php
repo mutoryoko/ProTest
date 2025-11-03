@@ -39,7 +39,7 @@ class MypageController extends Controller
         $profile = $user->profile;
         $data = $request->validated();
 
-        if($request->has('user_image')) {
+        if ($request->has('user_image')) {
             if ($profile && $profile->user_image) {
                 Storage::disk('public')->delete($profile->user_image);
             }

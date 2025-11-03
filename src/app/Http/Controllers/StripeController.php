@@ -54,7 +54,7 @@ class StripeController extends Controller
             return redirect($session->url, 303);
         }
         // コンビニ支払いの場合
-        elseif($request->payment_method === 'konbini') {
+        elseif ($request->payment_method === 'konbini') {
             // 今回はstripeに移動する前にDB登録
             Transaction::create([
                 'item_id' => $itemId,
