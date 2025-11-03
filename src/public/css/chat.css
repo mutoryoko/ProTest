@@ -1,3 +1,144 @@
 .content {
     display: flex;
+    height: 100vh;
+}
+
+/* その他の取引 */
+.aside {
+    width: 15%;
+    text-align: center;
+    background-color: rgb(134, 134, 134);
+}
+
+.aside__title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+    margin: 15px;
+}
+
+/* メイン（ユーザー・商品・チャット） */
+.chat__wrapper {
+    width: 85%;
+}
+
+.chat__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid rgb(95, 95, 95);
+    padding: 15px 30px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-image__wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 15px;
+}
+
+.user-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.chat__title {
+    font-size: 28px;
+}
+
+.chat-finished__button {
+    background-color: rgb(255, 130, 130);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* 商品情報 */
+.item-info {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid rgb(95, 95, 95);
+    padding: 15px 30px;
+}
+
+.item-image__wrapper {
+    width: 180px;
+    height: 180px;
+    margin-right: 40px;
+}
+
+.item-image {
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.item-name {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.item-price {
+    font-size: 24px;
+}
+
+.yen {
+    font-size: 24px;
+    margin-right: 3px;
+}
+
+/* チャット */
+.chat-area {
+    padding: 15px 30px;
+}
+
+.chat__form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.chat__input {
+    width: 80%;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.file__upload-btn {
+    color: rgb(255, 85, 85);
+    font-weight: bold;
+    padding: 10px 15px;
+    border: 2px solid rgb(255, 85, 85);
+    border-radius: 10px;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.file-input {
+    display: none;
+}
+
+.chat__submit {
+    width: 60px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.send-icon {
+    width: 100%;
 }
