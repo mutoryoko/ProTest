@@ -42,7 +42,7 @@
             @forelse ($transactionItems as $transactionItem)
                 <div class="item-card">
                     <div class="item-image__wrapper">
-                        <a href="{{ route('chat.index', ['transaction_id' => $transactionItem->transaction->id]) }}">
+                        <a href="{{ route('chat.show', ['transaction' => $transactionItem->transaction->id]) }}">
                             <img class="item-image" src="{{ asset('storage/'.$transactionItem->item_image) }}" alt="商品画像">
                         </a>
                     </div>

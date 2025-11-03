@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/cancel', 'cancel')->name('checkout.cancel');
     });
 
-    Route::get('/transaction/chat/{transaction_id}', [ChatController::class, 'index'])->name('chat.index');
+    Route::get('/transaction/chat/{transaction}', [ChatController::class, 'show'])->name('chat.show');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });

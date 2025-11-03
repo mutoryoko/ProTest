@@ -10,36 +10,43 @@
     <div class="content">
         <div class="aside">
             <p class="aside__title">その他の取引</p>
+            @foreach ($transactionItems as $item)
+                <a class="aside__item-link" href="{{ route('chat.show', ['transaction' => $item->transaction->id]) }}">{{ $item->item_name }}</a>
+            @endforeach
         </div>
 
         <div class="chat__wrapper">
             <div class="chat__header">
                 <div class="user-info">
-                    {{-- @if($comment->user->profile && $comment->user->profile->user_image)
+                    @if($partner->profile && $partner->profile->user_image)
                         <div class="user-image__wrapper">
-                            <img src="{{ asset('storage/'.$comment->user->profile->user_image) }}" alt="ユーザーアイコン" class="user-image" />
+                            <img src="{{ asset('storage/'.$partner->profile->user_image) }}" alt="ユーザーアイコン" class="user-image" />
                         </div>
-                    @else --}}
+                    @else
                         <div class="user-image__wrapper">
                             <img src="{{ asset('storage/profile-images/no-image.png')}}" alt="no-image" class="user-image">
                         </div>
-                    {{-- @endif --}}
-                    <h1 class="chat__title">【ユーザー名さん】との取引画面</h1>
+                    @endif
+                    <h1 class="chat__title">
+                        {{ $partner->name }}さんとの取引画面
+                    </h1>
                 </div>
-                <form action="" method="POST">
-                    @csrf
-                    <button class="chat-finished__button">取引を完了する</button>
-                </form>
+                @if(Auth::user()->id === $transaction->buyer_id)
+                    <form action="" method="POST">
+                        @csrf
+                        <button class="chat-finished__button">取引を完了する</button>
+                    </form>
+                @endif
             </div>
             <div class="item-info">
                 <div class="item-image__wrapper">
-                    <img src="" alt="商品画像">
+                    <img class="item-image" src="{{ asset('storage/'.$transaction->item->item_image) }}" alt="商品画像">
                 </div>
                 <div>
-                    <h2 class="item-name">商品名</h2>
+                    <h2 class="item-name">{{ $transaction->item->item_name }}</h2>
                     <p class="item-price">
                         <span class="yen">¥</span>
-                        商品価格
+                        {{ $transaction->item->price }}
                     </p>
                 </div>
             </div>
