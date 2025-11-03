@@ -39,15 +39,14 @@
                 <p>購入した商品がありません。</p>
             @endforelse
         @elseif ($tab === 'in_progress')
-            {{-- 以下は仮状態。transactionからアイテム取得予定 --}}
-            @forelse ($buyingItems as $buyingItem)
+            @forelse ($transactionItems as $transactionItem)
                 <div class="item-card">
                     <div class="item-image__wrapper">
-                        <a href="{{ route('detail', ['item_id' => $buyingItem->id]) }}">
-                            <img class="item-image" src="{{ asset('storage/'.$buyingItem->item_image) }}" alt="商品画像">
+                        <a href="{{ route('chat.index', ['transaction_id' => $transactionItem->transaction->id]) }}">
+                            <img class="item-image" src="{{ asset('storage/'.$transactionItem->item_image) }}" alt="商品画像">
                         </a>
                     </div>
-                    <p class="item-name">{{ $buyingItem->item_name }}</p>
+                    <p class="item-name">{{ $transactionItem->item_name }}</p>
                 </div>
             @empty
                 <p>取引中の商品がありません。</p>

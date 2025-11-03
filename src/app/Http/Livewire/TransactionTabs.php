@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Support\Facades\Request;
-use App\Models\Transaction;
 use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -23,7 +22,6 @@ class TransactionTabs extends Component
             } else {
                 $this->tab = 'in_progress';
             }
-            // $this->tab = $page === 'sell' ? 'selling' : 'buying';
         }
     }
 
@@ -33,12 +31,20 @@ class TransactionTabs extends Component
 
         $sellingItems = Item::where('user_id', $user->id)->get();
 
-        $boughtItemIds = Transaction::where('buyer_id', $user->id)->pluck('item_id');
-        $buyingItems = Item::whereIn('id', $boughtItemIds)->get();
+        $soldItems = Item::where('user_id', $user->id)
+            ->whereHas('transaction')->get();
+
+        $boughtItems = Item::whereHas('transaction',
+            function ($query) use ($user) {
+                $query->where('buyer_id', $user->id);
+            })->get();
+
+        $transactionItems = $soldItems->merge($boughtItems);
 
         return view('livewire.transaction-tabs', [
             'sellingItems' => $sellingItems,
-            'buyingItems' => $buyingItems,
+            'buyingItems' => $boughtItems,
+            'transactionItems' => $transactionItems,
         ]);
     }
 }

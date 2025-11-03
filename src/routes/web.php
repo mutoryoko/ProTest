@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\StripeController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ItemController;
@@ -63,6 +64,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/success', 'success')->name('checkout.success');
         Route::get('/cancel', 'cancel')->name('checkout.cancel');
     });
+
+    Route::get('/transaction/chat/{transaction_id}', [ChatController::class, 'index'])->name('chat.index');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });
