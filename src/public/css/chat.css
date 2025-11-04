@@ -1,6 +1,6 @@
 .content {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* その他の取引 */
@@ -30,7 +30,6 @@
 /* メイン（ユーザー・商品・チャット） */
 .chat__wrapper {
     width: 85%;
-    position: relative;
 }
 
 .chat__header {
@@ -117,49 +116,86 @@
 
 /* チャット */
 .chat-area {
-    width: 100%;
     padding: 15px 30px;
 }
 
-.chat__content {
+.chat-content {
+    min-height: 300px;
     display: flex;
+    flex-direction: column;
 }
 
-.my-messages {
-    width: 50%;
+.my-message {
+    text-align: right;
 }
 
-.partner-messages {
-    width: 50%;
+.partner-message {
+    text-align: left;
 }
 
-/* チャット入力欄 */
-.chat__form {
-    width: 100%;
-    position: absolute;
-    bottom: 30px;
+.chat__user-info {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.chat__partner-info {
     display: flex;
     align-items: center;
 }
 
-.chat__input {
+.chat__user-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+}
+
+.chat__user-name {
+    font-weight: bold;
+    margin: 0 10px;
+}
+
+.message-body {
+    display: inline-block;
+    background-color: rgb(217, 217, 217);
+    border-radius: 4px;
+    padding: 10px 30px;
+    margin: 10px 0;
+}
+
+/* チャット入力欄 */
+.chat-form__wrapper {
+    width: 100%;
+    height: 50px;
+    padding: 20px 0;
+}
+
+.chat-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.chat-input {
     width: 80%;
     border: 1px solid rgb(95, 95, 95);
     border-radius: 4px;
     padding: 10px;
 }
 
-.file__upload-btn {
+.file-upload-btn {
+    width: 100px;
+    text-align: center;
     color: rgb(255, 85, 85);
     font-weight: bold;
-    padding: 10px 15px;
+    padding: 10px;
     border: 2px solid rgb(255, 85, 85);
     border-radius: 10px;
     margin: 0 10px;
     cursor: pointer;
 }
 
-.file__upload-btn:hover {
+.file-upload-btn:hover {
     opacity: 0.7;
 }
 
@@ -167,23 +203,18 @@
     display: none;
 }
 
-.chat__submit {
-    width: 60px;
+.chat-submit {
+    width: 55px;
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
 }
 
-.chat__submit:hover {
+.chat-submit:hover {
     opacity: 0.7;
 }
 
 .send-icon {
     width: 100%;
-}
-
-.error {
-    position: absolute;
-    bottom: 10px;
 }
