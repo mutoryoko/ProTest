@@ -1,6 +1,9 @@
 /storage/app/livewire-tmp/*
 !/storage/app/livewire-tmp/.gitkeep
 
+/storage/app/public/chat-images/*
+!/storage/app/public/chat-images/.gitkeep
+
 /node_modules
 /public/hot
 
