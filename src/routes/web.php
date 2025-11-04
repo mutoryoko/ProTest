@@ -65,7 +65,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/cancel', 'cancel')->name('checkout.cancel');
     });
 
-    Route::get('/transaction/chat/{transaction}', [ChatController::class, 'show'])->name('chat.show');
+    // 取引チャット
+    Route::prefix('chat/{transaction}')->controller(ChatController::class)->group(function(){
+        Route::get('/', 'show')->name('chat.show');
+        Route::post('/send', 'store')->name('chat.store');
+        // Route::put('/update/{chat}/{message}', 'update')->name('chat.update');
+    });
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });

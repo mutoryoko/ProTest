@@ -30,6 +30,7 @@
 /* メイン（ユーザー・商品・チャット） */
 .chat__wrapper {
     width: 85%;
+    position: relative;
 }
 
 .chat__header {
@@ -75,6 +76,10 @@
     cursor: pointer;
 }
 
+.chat-finished__button:hover {
+    opacity: 0.7;
+}
+
 /* 商品情報 */
 .item-info {
     display: flex;
@@ -112,11 +117,27 @@
 
 /* チャット */
 .chat-area {
+    width: 100%;
     padding: 15px 30px;
 }
 
+.chat__content {
+    display: flex;
+}
+
+.my-messages {
+    width: 50%;
+}
+
+.partner-messages {
+    width: 50%;
+}
+
+/* チャット入力欄 */
 .chat__form {
     width: 100%;
+    position: absolute;
+    bottom: 30px;
     display: flex;
     align-items: center;
 }
@@ -138,6 +159,10 @@
     cursor: pointer;
 }
 
+.file__upload-btn:hover {
+    opacity: 0.7;
+}
+
 .file-input {
     display: none;
 }
@@ -150,6 +175,15 @@
     cursor: pointer;
 }
 
+.chat__submit:hover {
+    opacity: 0.7;
+}
+
 .send-icon {
     width: 100%;
+}
+
+.error {
+    position: absolute;
+    bottom: 10px;
 }

@@ -13,11 +13,12 @@ class Message extends Model
         'chat_id',
         'sender_id',
         'body',
+        'image',
     ];
 
     public function chat()
     {
-        return $this->belongsTo(Chat::class, 'last_message_id');
+        return $this->belongsTo(Chat::class);
     }
 
     public function sender()

@@ -22,6 +22,11 @@ class Chat extends Model
 
     public function messages()
     {
-        return $this->hasMany(Message::class, 'last_message_id');
+        return $this->hasMany(Message::class);
+    }
+
+    public function lastMessage()
+    {
+        return $this->belongsTo(Message::class, 'last_message_id');
     }
 }
