@@ -9,10 +9,11 @@ use App\Models\Item;
 use App\Models\Chat;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ChatController extends Controller
 {
-    public function show(Transaction $transaction)
+    public function show(Transaction $transaction, Request $request)
     {
         $user = Auth::user();
 
@@ -48,12 +49,22 @@ class ChatController extends Controller
 
         $messages = $chat->messages()->orderBy('created_at')->get();
 
+        $edit_message_id = $request->query('edit_message_id');
+
+        if ($edit_message_id) {
+            $message_to_edit = Message::find($edit_message_id);
+            if (!$message_to_edit || $message_to_edit->sender_id !== $user->id) {
+                abort(403);
+            }
+        }
+
         return view('chat', compact(
             'user',
             'partner',
             'transaction',
             'otherTransactionItems',
-            'messages'
+            'messages',
+            'edit_message_id'
         ));
     }
 
@@ -84,18 +95,35 @@ class ChatController extends Controller
         return to_route('chat.show', ['transaction' => $transaction->id]);
     }
 
-    public function edit(Chat $chat)
+    public function update(ChatMessageRequest $request, Message $message)
     {
-        //
+        if (auth()->id() !== $message->sender_id) {
+            abort(403);
+        }
+
+        $validated = $request->validated();
+        $message->update($validated);
+
+        return to_route('chat.show', [
+            'transaction' => $message->chat->transaction_id
+        ])->with('message', 'メッセージを更新しました');
     }
 
-    public function update(ChatMessageRequest $request, Chat $chat)
+    public function destroy(Request $request, Message $message)
     {
-        //
-    }
+        if (auth()->id() !== $message->sender_id) {
+            abort(403);
+        }
 
-    public function destroy(Request $request)
-    {
-        //
+        if ($message->image) {
+            if (Storage::disk('public')->exists($message->image)) {
+                Storage::disk('public')->delete($message->image);
+            }
+        }
+        $message->delete();
+
+        return to_route('chat.show',[
+            'transaction' => $message->chat->transaction_id
+        ])->with('message', 'メッセージを削除しました');
     }
 }

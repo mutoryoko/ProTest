@@ -66,10 +66,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // 取引チャット
-    Route::prefix('chat/{transaction}')->controller(ChatController::class)->group(function(){
-        Route::get('/', 'show')->name('chat.show');
-        Route::post('/send', 'store')->name('chat.store');
-        // Route::put('/update/{chat}/{message}', 'update')->name('chat.update');
+    Route::prefix('transaction')->controller(ChatController::class)->group(function(){
+        Route::get('/{transaction}/chat', 'show')->name('chat.show');
+        Route::post('/{transaction}/chat', 'store')->name('chat.store');
+        Route::put('/chat/{message}', 'update')->name('chat.update');
+        Route::delete('/chat/{message}', 'destroy')->name('chat.destroy');
     });
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');

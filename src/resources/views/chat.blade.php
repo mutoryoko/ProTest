@@ -16,6 +16,9 @@
         </div>
 
         <div class="chat__wrapper">
+            @if(session('message'))
+                <div class="session">{{ session('message') }}</div>
+            @endif
             <div class="chat__header">
                 <div class="user-info">
                     @if($partner->profile && $partner->profile->user_image)
@@ -51,9 +54,11 @@
                 </div>
             </div>
             <div class="chat-area">
+                {{-- チャットメッセージ --}}
                 <div class="chat-content">
                     @foreach ($messages as $message)
                         @if ($message->sender_id === $user->id)
+                        {{-- ログイン中ユーザーのメッセージ --}}
                             <div class="my-message">
                                 <div class="chat__user-info">
                                     <p class="chat__user-name">{{ $user->name }}</p>
@@ -67,22 +72,49 @@
                                     </div>
                                     @endif
                                 </div>
-                                <p class="message-body">{{ $message->body }}</p>
-                                @if($message->image)
-                                    <div>
-                                        <img class="message-image" src="{{ asset('storage/'.$message->image ?? '') }}" alt="">
+                                @if (isset($edit_message_id) && $message->id == $edit_message_id)
+                                {{-- メッセージ編集 --}}
+                                    <form class="chat__update-form" action="{{ route('chat.update', $message) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <div>
+                                            <textarea class="edit__textarea" name="body" rows="3" cols="35">{{ old('body', $message->body) }}</textarea>
+                                        </div>
+                                        @if($message->image)
+                                            <div>
+                                                <img class="message-image" src="{{ asset('storage/'.$message->image ?? '') }}" alt="画像">
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <button class="edit__update-button" type="submit">更新</button>
+                                            <a class="edit__cancel-button" href="{{ route('chat.show', ['transaction' => $transaction->id]) }}">キャンセル</a>
+                                        </div>
+                                    </form>
+                                    @if($errors->hasAny('body'))
+                                        <p class="error edit-error">
+                                            {{ $errors->first('body') }}
+                                        </p>
+                                    @endif
+                                @else
+                                {{-- メッセージ表示 --}}
+                                    <p class="message-body">{{ $message->body }}</p>
+                                    @if($message->image)
+                                        <div>
+                                            <img class="message-image" src="{{ asset('storage/'.$message->image ?? '') }}" alt="画像">
+                                        </div>
+                                    @endif
+                                    <div class="edit-delete__buttons">
+                                        <a class="chat__edit-button" href="{{ route('chat.show',  ['transaction' => $transaction->id, 'edit_message_id' => $message->id]) }}">編集</a>
+                                        <form class="chat__delete-form" action="{{ route('chat.destroy', $message) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="chat__delete-button" type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+                                        </form>
                                     </div>
                                 @endif
-                                <div class="edit-delete__buttons">
-                                    <a class="chat__edit-button" href="">編集</a>
-                                    <form class="chat__delete-form" action="" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="chat__delete-button">削除</button>
-                                    </form>
-                                </div>
                             </div>
                         @else
+                            {{-- 取引相手のメッセージ表示 --}}
                             <div class="partner-message">
                                 <div class="chat__partner-info">
                                     @if($partner->profile && $partner->profile->user_image)
@@ -118,9 +150,9 @@
                         </button>
                     </form>
                     @if($errors->hasAny(['body', 'image']))
-                    <p class="error">
-                        {{ $errors->first('body') ?: $errors->first('image') }}
-                    </p>
+                        <p class="error">
+                            {{ $errors->first('body') ?: $errors->first('image') }}
+                        </p>
                     @endif
                 </div>
             </div>

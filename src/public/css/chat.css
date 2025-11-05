@@ -3,6 +3,13 @@
     min-height: 100vh;
 }
 
+.session {
+    color: rgb(84, 196, 159);
+    font-weight: bold;
+    padding: 10px 30px;
+    text-align: right;
+}
+
 /* その他の取引 */
 .aside {
     width: 15%;
@@ -133,15 +140,15 @@
     text-align: left;
 }
 
-.chat__user-info {
-    display: flex;
-    justify-content: end;
-    align-items: center;
-}
-
+.chat__user-info,
 .chat__partner-info {
     display: flex;
     align-items: center;
+    margin-top: 20px;
+}
+
+.chat__user-info {
+    justify-content: end;
 }
 
 .chat__user-image {
@@ -171,7 +178,8 @@
 }
 
 .chat__edit-button,
-.chat__delete-button {
+.chat__delete-button,
+.edit__cancel-button {
     font-size: 14px;
     color: rgb(95, 95, 95);
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -183,6 +191,33 @@
     margin: 0 10px 0 25px;
     cursor: pointer;
     padding: 0;
+}
+
+/* チャット編集欄 */
+.chat__update-form {
+    padding: 10px 0;
+}
+
+.edit__textarea {
+    resize: none;
+    font-size: 16px;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.edit__update-button {
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    background-color: #000;
+    border-radius: 3px;
+    padding: 3px 10px;
+}
+
+.edit__cancel-button {
+    margin: 5px 10px;
 }
 
 /* チャット入力欄 */
