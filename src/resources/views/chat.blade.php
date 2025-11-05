@@ -68,8 +68,18 @@
                                     @endif
                                 </div>
                                 <p class="message-body">{{ $message->body }}</p>
-                                <div>
-                                    <img class="message-image" src="{{ asset('storage/'.$message->image ?? '') }}" alt="">
+                                @if($message->image)
+                                    <div>
+                                        <img class="message-image" src="{{ asset('storage/'.$message->image ?? '') }}" alt="">
+                                    </div>
+                                @endif
+                                <div class="edit-delete__buttons">
+                                    <a class="chat__edit-button" href="">編集</a>
+                                    <form class="chat__delete-form" action="" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="chat__delete-button">削除</button>
+                                    </form>
                                 </div>
                             </div>
                         @else
