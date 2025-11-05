@@ -78,7 +78,7 @@
                                         @csrf
                                         @method('PUT')
                                         <div>
-                                            <textarea class="edit__textarea" name="body" rows="3" cols="35">{{ old('body', $message->body) }}</textarea>
+                                            <textarea class="edit__textarea" name="body" rows="3" cols="40">{{ old('body', $message->body) }}</textarea>
                                         </div>
                                         @if($message->image)
                                             <div>
@@ -138,9 +138,9 @@
                 </div>
                 {{-- メッセージ入力欄 --}}
                 <div class="chat-form__wrapper">
-                    <form class="chat-form" action="{{ route('chat.store', ['transaction' => $transaction->id]) }}" method="POST" enctype="multipart/form-data">
+                    <form id="message-form" class="chat-form" action="{{ route('chat.store', ['transaction' => $transaction->id]) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <input class="chat-input" type="text" name="body" placeholder="取引メッセージを記入してください" value="{{ old('body') }}">
+                        <input id="message-text" class="chat-input" type="text" name="body" placeholder="取引メッセージを記入してください" value="{{ old('body', '') }}">
                         <label class="file-upload-btn">
                             画像を追加
                             <input class="file-input" name="image" type="file">
@@ -158,4 +158,29 @@
             </div>
         </div>
     </div>
+    <script>
+        const messageForm = document.getElementById('message-form');
+        const messageText = document.getElementById('message-text');
+
+        const draftKey = `draft_message_{{ $transaction->id }}`;
+
+        // ページ読み込み時に下書きを復元
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedDraft = localStorage.getItem(draftKey);
+            if (savedDraft) {
+                messageText.value = savedDraft;
+            }
+        });
+
+        // テキスト入力時に下書きを自動保存
+        messageText.addEventListener('input', () => {
+            // textの内容をlocalStorageに保存
+            localStorage.setItem(draftKey, messageText.value);
+        });
+
+        // フォーム送信時に下書きを削除
+        messageForm.addEventListener('submit', () => {
+            localStorage.removeItem(draftKey);
+        });
+    </script>
 @endsection
