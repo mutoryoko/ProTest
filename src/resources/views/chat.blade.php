@@ -164,13 +164,15 @@
                 <form action="{{ route('rating.store', ['transaction' => $transaction->id]) }}" method="POST">
                     @csrf
                     <div class="stars">
-                        <input id="rating1" type="radio" name="rating" value="1"><label for="rating1">★</label>
-                        <input id="rating2" type="radio" name="rating" value="2"><label for="rating2">★</label>
-                        <input id="rating3" type="radio" name="rating" value="3"><label for="rating3">★</label>
-                        <input id="rating4" type="radio" name="rating" value="4"><label for="rating4">★</label>
                         <input id="rating5" type="radio" name="rating" value="5"><label for="rating5">★</label>
+                        <input id="rating4" type="radio" name="rating" value="4"><label for="rating4">★</label>
+                        <input id="rating3" type="radio" name="rating" value="3"><label for="rating3">★</label>
+                        <input id="rating2" type="radio" name="rating" value="2"><label for="rating2">★</label>
+                        <input id="rating1" type="radio" name="rating" value="1"><label for="rating1">★</label>
                     </div>
-                    <button>送信する</button>
+                    <div class="rating__button">
+                        <button class="rating__submit" type="submit">送信する</button>
+                    </div>
                 </form>
             </div>
         </div>
