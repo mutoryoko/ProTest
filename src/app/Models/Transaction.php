@@ -17,6 +17,7 @@ class Transaction extends Model
         'shipping_postcode',
         'shipping_address',
         'shipping_building',
+        'status',
     ];
 
     public function item()

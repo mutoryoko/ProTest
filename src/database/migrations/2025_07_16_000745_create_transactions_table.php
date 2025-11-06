@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('shipping_postcode')->comment('配送先の郵便番号');
             $table->string('shipping_address')->comment('配送先の住所');
             $table->string('shipping_building')->nullable()->comment('配送先の建物名');
+            $table->integer('status')->comment('1:取引中 2:購入者評価済 3:出品者評価済')->default(1);
             $table->timestamps();
         });
     }

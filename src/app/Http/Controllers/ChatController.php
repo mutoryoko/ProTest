@@ -30,7 +30,7 @@ class ChatController extends Controller
         $modalParam = $request->query('modal');
         $showModal = false;
 
-        if ($modalParam === 'open') {
+        if ($modalParam === 'open' || ($user->id === $transaction->item->user_id && $transaction->status === 2)) {
             $showModal = true;
         }
 

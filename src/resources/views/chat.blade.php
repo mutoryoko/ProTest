@@ -161,14 +161,14 @@
             <div class="modal-window">
                 <p class="complete-message">取引が完了しました。</p>
                 <p class="review-question">今回の取引相手はどうでしたか？</p>
-                <form action="" method="POST">
+                <form action="{{ route('rating.store', ['transaction' => $transaction->id]) }}" method="POST">
                     @csrf
                     <div class="stars">
-                        <input id="review01" type="radio" name="review"><label for="review01">★</label>
-                        <input id="review02" type="radio" name="review"><label for="review02">★</label>
-                        <input id="review03" type="radio" name="review"><label for="review03">★</label>
-                        <input id="review04" type="radio" name="review"><label for="review04">★</label>
-                        <input id="review05" type="radio" name="review"><label for="review05">★</label>
+                        <input id="rating1" type="radio" name="rating" value="1"><label for="rating1">★</label>
+                        <input id="rating2" type="radio" name="rating" value="2"><label for="rating2">★</label>
+                        <input id="rating3" type="radio" name="rating" value="3"><label for="rating3">★</label>
+                        <input id="rating4" type="radio" name="rating" value="4"><label for="rating4">★</label>
+                        <input id="rating5" type="radio" name="rating" value="5"><label for="rating5">★</label>
                     </div>
                     <button>送信する</button>
                 </form>
