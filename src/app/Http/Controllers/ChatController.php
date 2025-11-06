@@ -27,6 +27,13 @@ class ChatController extends Controller
             $partner = $transaction->buyer;
         }
 
+        $modalParam = $request->query('modal');
+        $showModal = false;
+
+        if ($modalParam === 'open') {
+            $showModal = true;
+        }
+
         $relations = ['transaction', 'user'];
 
         $soldItems = Item::with($relations)
@@ -64,7 +71,8 @@ class ChatController extends Controller
             'transaction',
             'otherTransactionItems',
             'messages',
-            'edit_message_id'
+            'edit_message_id',
+            'showModal'
         ));
     }
 

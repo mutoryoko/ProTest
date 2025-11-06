@@ -8,6 +8,7 @@ use App\Http\Controllers\LikeController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\RatingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,6 +73,9 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/chat/{message}', 'update')->name('chat.update');
         Route::delete('/chat/{message}', 'destroy')->name('chat.destroy');
     });
+
+    // 評価
+    Route::post('/transaction/{transaction}/rating', [RatingController::class, 'store'])->name('rating.store');
 
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 });

@@ -35,10 +35,7 @@
                     </h1>
                 </div>
                 @if(Auth::user()->id === $transaction->buyer_id)
-                    <form action="" method="POST">
-                        @csrf
-                        <button class="chat-finished__button">取引を完了する</button>
-                    </form>
+                    <a class="chat-finished__button" href="{{ route('chat.show', ['transaction' => $transaction->id, 'modal' => 'open']) }}">取引を完了する</a>
                 @endif
             </div>
             <div class="item-info">
@@ -158,6 +155,26 @@
             </div>
         </div>
     </div>
+    {{-- 評価モーダル --}}
+    @if($showModal)
+        <div class="modal-background">
+            <div class="modal-window">
+                <p class="complete-message">取引が完了しました。</p>
+                <p class="review-question">今回の取引相手はどうでしたか？</p>
+                <form action="" method="POST">
+                    @csrf
+                    <div class="stars">
+                        <input id="review01" type="radio" name="review"><label for="review01">★</label>
+                        <input id="review02" type="radio" name="review"><label for="review02">★</label>
+                        <input id="review03" type="radio" name="review"><label for="review03">★</label>
+                        <input id="review04" type="radio" name="review"><label for="review04">★</label>
+                        <input id="review05" type="radio" name="review"><label for="review05">★</label>
+                    </div>
+                    <button>送信する</button>
+                </form>
+            </div>
+        </div>
+    @endif
     <script>
         const messageForm = document.getElementById('message-form');
         const messageText = document.getElementById('message-text');
