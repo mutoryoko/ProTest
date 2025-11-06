@@ -6,6 +6,7 @@ use App\Http\Requests\ProfileRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Profile;
+use App\Models\Rating;
 
 class MypageController extends Controller
 {
@@ -19,7 +20,13 @@ class MypageController extends Controller
 
     public function index()
     {
+        $user = Auth::user();
         $profileData = $this->getProfile();
+
+        $average = Rating::where('rated_user_id', $user->id)->pluck('score')->avg();
+        $rating = $average ? (int)round($average) : null;
+
+        $profileData['rating'] = $rating;
 
         return view('mypage.index', $profileData);
     }

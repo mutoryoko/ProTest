@@ -19,8 +19,15 @@
             </div>
             <div>
                 <h1 class="user-name">{{ $user->name }}</h1>
-                <div class="rating">
-                    ★★★★★
+                <div>
+                    @if($rating)
+                        @for ($i = 1; $i <= $rating; $i++)
+                            <span class="yellow-star">★</span>
+                        @endfor
+                        @for ($i = 1; $i <= 5 - $rating; $i++)
+                            <span class="gray-star">★</span>
+                        @endfor
+                    @endif
                 </div>
             </div>
         </div>
