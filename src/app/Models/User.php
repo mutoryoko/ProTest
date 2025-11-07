@@ -112,17 +112,17 @@ class User extends Authenticatable implements MustVerifyEmail
             $lastReadMessageId = $chat->pivot->last_read_message_id;
 
             if (is_null($lastReadMessageId)) {
-                $unreadCountInChat = $chat->messages()
+                $unreadCount = $chat->messages()
                     ->where('sender_id', '!=', $this->id)
                     ->count();
             } else {
-                $unreadCountInChat = $chat->messages()
+                $unreadCount = $chat->messages()
                     ->where('id', '>', $lastReadMessageId)
                     ->where('sender_id', '!=', $this->id)
                     ->count();
             }
 
-            $totalUnreadCount += $unreadCountInChat;
+            $totalUnreadCount += $unreadCount;
         }
 
         return $totalUnreadCount;

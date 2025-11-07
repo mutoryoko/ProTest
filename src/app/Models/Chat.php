@@ -17,7 +17,9 @@ class Chat extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class)
+            ->withPivot('last_read_message_id', 'last_read_at')
+            ->withTimestamps();;
     }
 
     public function transaction()
@@ -33,5 +35,22 @@ class Chat extends Model
     public function lastMessage()
     {
         return $this->belongsTo(Message::class, 'last_message_id');
+    }
+
+    public function unreadCountFor(User $user)
+    {
+        $pivot = $this->users()->find($user->id)->pivot;
+        $lastReadMessageId = $pivot->last_read_message_id;
+
+        if (is_null($lastReadMessageId)) {
+            return $this->messages()
+                ->where('sender_id', '!=', $user->id)
+                ->count();
+        } else {
+            return $this->messages()
+                ->where('id', '>', $lastReadMessageId)
+                ->where('sender_id', '!=', $user->id)
+                ->count();
+        }
     }
 }
