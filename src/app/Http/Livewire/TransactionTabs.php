@@ -27,6 +27,7 @@ class TransactionTabs extends Component
 
     public function render()
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
 
         $sellingItems = Item::where('user_id', $user->id)->get();
@@ -41,10 +42,13 @@ class TransactionTabs extends Component
 
         $transactionItems = $soldItems->merge($boughtItems);
 
+        $totalUnreadCount = $user->unreadMessagesCount();
+
         return view('livewire.transaction-tabs', [
             'sellingItems' => $sellingItems,
             'buyingItems' => $boughtItems,
             'transactionItems' => $transactionItems,
+            'totalUnreadCount' => $totalUnreadCount,
         ]);
     }
 }

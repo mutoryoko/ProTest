@@ -75,6 +75,13 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Transaction::class, 'buyer_id');
     }
 
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class)
+            ->withPivot('last_read_message_id', 'last_read_at')
+            ->withTimestamps();
+    }
+
     public function messages()
     {
         return $this->hasMany(Message::class, 'sender_id');
@@ -88,5 +95,36 @@ class User extends Authenticatable implements MustVerifyEmail
     public function ratedBy()
     {
         return $this->hasMany(Rating::class, 'rated_user_id');
+    }
+
+    public function unreadChatsCount(): int
+    {
+        return $this->chats()
+            ->whereColumn('chats.last_message_id', '>', 'chat_user.last_read_message_id')
+            ->count();
+    }
+
+    public function unreadMessagesCount(): int
+    {
+        $totalUnreadCount = 0;
+
+        foreach ($this->chats as $chat) {
+            $lastReadMessageId = $chat->pivot->last_read_message_id;
+
+            if (is_null($lastReadMessageId)) {
+                $unreadCountInChat = $chat->messages()
+                    ->where('sender_id', '!=', $this->id)
+                    ->count();
+            } else {
+                $unreadCountInChat = $chat->messages()
+                    ->where('id', '>', $lastReadMessageId)
+                    ->where('sender_id', '!=', $this->id)
+                    ->count();
+            }
+
+            $totalUnreadCount += $unreadCountInChat;
+        }
+
+        return $totalUnreadCount;
     }
 }

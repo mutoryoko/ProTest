@@ -15,6 +15,11 @@ class Chat extends Model
         'last_message_at',
     ];
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
     public function transaction()
     {
         return $this->belongsTo(Transaction::class);

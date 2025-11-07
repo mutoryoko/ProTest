@@ -10,6 +10,7 @@ use Stripe\Checkout\Session as StripeSession;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Item;
 use App\Models\Transaction;
+use App\Models\Chat;
 
 class StripeController extends Controller
 {
@@ -56,7 +57,7 @@ class StripeController extends Controller
         // コンビニ支払いの場合
         elseif ($request->payment_method === 'konbini') {
             // 今回はstripeに移動する前にDB登録
-            Transaction::create([
+            $transaction = Transaction::create([
                 'item_id' => $itemId,
                 'buyer_id' => $userId,
                 'payment_method' => 1, // コンビニ払い
@@ -64,6 +65,9 @@ class StripeController extends Controller
                 'shipping_address' => $request->input('shipping_address'),
                 'shipping_building' => $request->input('shipping_building'),
             ]);
+
+            $chat = Chat::firstOrCreate(['transaction_id' => $transaction->id,]);
+            $chat->users()->syncWithoutDetaching([$userId, $transaction->item->user_id]);
 
             $session = Session::create([
                 'payment_method_types' => ['konbini'],
@@ -114,7 +118,7 @@ class StripeController extends Controller
             $paymentMethod = $session->payment_method_types[0] ?? 'card';
 
             if ($paymentMethod === 'card') {
-                Transaction::create([
+                $transaction = Transaction::create([
                     'item_id' => $item->id,
                     'buyer_id' => $userId,
                     'stripe_session_id' => $sessionId,
@@ -123,6 +127,9 @@ class StripeController extends Controller
                     'shipping_address' => $session->metadata->address,
                     'shipping_building' => $session->metadata->building,
                 ]);
+
+                $chat = Chat::firstOrCreate(['transaction_id' => $transaction->id,]);
+                $chat->users()->syncWithoutDetaching([$userId, $transaction->item->user_id]);
             }
 
             return view('checkout.success', ['item' => $item]);

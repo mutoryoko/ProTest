@@ -27,6 +27,17 @@ class ChatController extends Controller
             $partner = $transaction->buyer;
         }
 
+        $chat = Chat::where('transaction_id', $transaction->id)->firstOrFail();
+
+    // --- 既読情報の更新 ---
+        if ($chat->last_message_id) {
+            $chat->users()->updateExistingPivot($user->id, [
+                'last_read_message_id' => $chat->last_message_id,
+                'last_read_at' => now(),
+            ]);
+        }
+
+    // --- 評価モーダルの表示 ---
         $modalParam = $request->query('modal');
         $showModal = false;
 
@@ -34,6 +45,19 @@ class ChatController extends Controller
             $showModal = true;
         }
 
+    // --- メッセージの編集フォーム表示 ---
+        $edit_message_id = $request->query('edit_message_id');
+
+        if ($edit_message_id) {
+            $message_to_edit = Message::find($edit_message_id);
+            if (!$message_to_edit || $message_to_edit->sender_id !== $user->id) {
+                abort(403);
+            }
+        }
+
+        $messages = $chat->messages()->orderBy('created_at')->get();
+
+    // --- 取引商品の表示 ---
         $relations = ['transaction', 'user'];
 
         $soldItems = Item::with($relations)
@@ -51,19 +75,6 @@ class ChatController extends Controller
 
         $otherTransactionItems = $transactionItems
             ->where('id', '!=', $transaction->item->id);
-
-        $chat = Chat::firstOrCreate(['transaction_id' => $transaction->id,]);
-
-        $messages = $chat->messages()->orderBy('created_at')->get();
-
-        $edit_message_id = $request->query('edit_message_id');
-
-        if ($edit_message_id) {
-            $message_to_edit = Message::find($edit_message_id);
-            if (!$message_to_edit || $message_to_edit->sender_id !== $user->id) {
-                abort(403);
-            }
-        }
 
         return view('chat', compact(
             'user',
@@ -117,7 +128,7 @@ class ChatController extends Controller
         ])->with('message', 'メッセージを更新しました');
     }
 
-    public function destroy(Request $request, Message $message)
+    public function destroy(Message $message)
     {
         if (auth()->id() !== $message->sender_id) {
             abort(403);

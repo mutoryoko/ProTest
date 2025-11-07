@@ -9,6 +9,7 @@
         <a href="{{ route('mypage.index', ['page' => 'in_progress']) }}" class="{{ $tab === 'in_progress' ? 'active' : '' }} progress-tab">
             取引中の商品
         </a>
+        <span>{{ $totalUnreadCount }}</span>
     </div>
 
     <div class="tab__content mt-4">
