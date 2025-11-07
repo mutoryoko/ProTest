@@ -42,12 +42,16 @@ class TransactionTabs extends Component
 
         $transactionItems = $soldItems->merge($boughtItems);
 
+        $sortedItems = $transactionItems->sortByDesc(function($item){
+            return $item->transaction->chat->last_message_at ?? 0;
+        });
+
         $totalUnreadCount = $user->unreadMessagesCount();
 
         return view('livewire.transaction-tabs', [
             'sellingItems' => $sellingItems,
             'buyingItems' => $boughtItems,
-            'transactionItems' => $transactionItems,
+            'transactionItems' => $sortedItems,
             'totalUnreadCount' => $totalUnreadCount,
         ]);
     }
