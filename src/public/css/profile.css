@@ -80,8 +80,46 @@
     cursor: pointer;
 }
 
+.progress-tab {
+    margin-right: 0;
+}
+
 .tabs .active {
     color: red;
+}
+
+/* 新着メッセージの通知バッジ */
+.tab-badge {
+    display: inline-block;
+    position: relative;
+}
+
+.item-image__wrapper {
+    position: relative;
+}
+
+.total-badge,
+.badge {
+    position: absolute;
+    min-width: 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
+    background: red;
+    border-radius: 10px;
+    padding: 0 3px;
+    box-sizing: border-box;
+}
+
+.total-badge {
+    left: 100%;
+}
+
+.badge {
+    top: 5px;
+    left: 5px;
 }
 
 /* タブレット表示 */

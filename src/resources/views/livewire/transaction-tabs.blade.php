@@ -6,12 +6,14 @@
         <a href="{{ route('mypage.index', ['page' => 'buy']) }}" class="{{ $tab === 'buying' ? 'active' : '' }} buy-tab">
             購入した商品
         </a>
-        <a href="{{ route('mypage.index', ['page' => 'in_progress']) }}" class="{{ $tab === 'in_progress' ? 'active' : '' }} progress-tab">
-            取引中の商品
-        </a>
-        @if($totalUnreadCount > 0)
-            <span class="badge">{{ $totalUnreadCount }}</span>
-        @endif
+        <div class="tab-badge">
+            <a href="{{ route('mypage.index', ['page' => 'in_progress']) }}" class="{{ $tab === 'in_progress' ? 'active' : '' }} progress-tab">
+                取引中の商品
+                @if($totalUnreadCount > 0)
+                    <span class="total-badge">{{ $totalUnreadCount }}</span>
+                @endif
+            </a>
+        </div>
     </div>
 
     <div class="tab__content mt-4">
@@ -47,11 +49,11 @@
                     $unreadCount = $transactionItem->transaction->chat->unreadCountFor(Auth::user());
                 @endphp
                 <div class="item-card">
-                    @if($unreadCount > 0)
-                        <span class="badge">{{ $unreadCount }}</span>
-                    @endif
                     <div class="item-image__wrapper">
                         <a href="{{ route('chat.show', ['transaction' => $transactionItem->transaction->id]) }}">
+                            @if($unreadCount > 0)
+                                <span class="badge">{{ $unreadCount }}</span>
+                            @endif
                             <img class="item-image" src="{{ asset('storage/'.$transactionItem->item_image) }}" alt="商品画像">
                         </a>
                     </div>
