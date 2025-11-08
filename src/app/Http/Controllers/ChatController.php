@@ -10,6 +10,7 @@ use App\Models\Chat;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 class ChatController extends Controller
 {
@@ -132,6 +133,33 @@ class ChatController extends Controller
     {
         if (auth()->id() !== $message->sender_id) {
             abort(403);
+        }
+
+        DB::table('chat_user')
+            ->where('last_read_message_id', $message->id)
+            ->update([
+                'last_read_message_id' => null,
+                'last_read_at' => null,
+            ]);
+
+        // 最後に送信されたメッセージの更新
+        if ($message->id === $message->chat->last_message_id) {
+            $previousMessage = $message->chat->messages()
+            ->where('id', '!=', $message->id)
+            ->latest()
+            ->first();
+        }
+
+        if ($previousMessage) {
+            $message->chat->update([
+                'last_message_id' => $previousMessage->id,
+                'last_message_at' => $previousMessage->created_at,
+            ]);
+        } else {
+            $message->chat->update([
+                'last_message_id' => null,
+                'last_message_at' => null,
+            ]);
         }
 
         if ($message->image) {
