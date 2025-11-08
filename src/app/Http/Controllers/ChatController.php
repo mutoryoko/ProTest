@@ -142,24 +142,24 @@ class ChatController extends Controller
                 'last_read_at' => null,
             ]);
 
-        // 最後に送信されたメッセージの更新
+        // 最新メッセージが削除されたときの更新処理
         if ($message->id === $message->chat->last_message_id) {
             $previousMessage = $message->chat->messages()
-            ->where('id', '!=', $message->id)
-            ->latest()
-            ->first();
-        }
+                ->where('id', '!=', $message->id)
+                ->latest()
+                ->first();
 
-        if ($previousMessage) {
-            $message->chat->update([
-                'last_message_id' => $previousMessage->id,
-                'last_message_at' => $previousMessage->created_at,
-            ]);
-        } else {
-            $message->chat->update([
-                'last_message_id' => null,
-                'last_message_at' => null,
-            ]);
+            if ($previousMessage) {
+                $message->chat->update([
+                    'last_message_id' => $previousMessage->id,
+                    'last_message_at' => $previousMessage->created_at,
+                ]);
+            } else {
+                $message->chat->update([
+                    'last_message_id' => null,
+                    'last_message_at' => null,
+                ]);
+            }
         }
 
         if ($message->image) {
