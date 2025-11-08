@@ -67,11 +67,11 @@ Route::middleware(['auth'])->group(function () {
     });
 
     // 取引チャット
-    Route::prefix('transaction')->controller(ChatController::class)->group(function(){
-        Route::get('/{transaction}/chat', 'show')->name('chat.show');
-        Route::post('/{transaction}/chat', 'store')->name('chat.store');
-        Route::put('/chat/{message}', 'update')->name('chat.update');
-        Route::delete('/chat/{message}', 'destroy')->name('chat.destroy');
+    Route::prefix('transaction')->name('chat.')->controller(ChatController::class)->group(function(){
+        Route::get('/{transaction}/chat', 'show')->name('show');
+        Route::post('/{transaction}/chat', 'store')->name('store');
+        Route::put('/chat/{message}', 'update')->name('update');
+        Route::delete('/chat/{message}', 'destroy')->name('destroy');
     });
 
     // 評価
