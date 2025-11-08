@@ -170,6 +170,15 @@
     margin-top: 8px;
 }
 
+.message-image {
+    max-width: 50%;
+    margin: 10px 0;
+}
+
+.my-image__wrapper {
+    margin-right: 0;
+}
+
 .edit-delete__buttons {
     display: flex;
     justify-content: end;
