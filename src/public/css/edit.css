@@ -26,6 +26,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
 }
 
 .upload-btn__wrapper {
@@ -35,6 +36,7 @@
 }
 
 .file__upload-btn {
+    min-width: 140px;
     height: 20px;
     font-size: 18px;
     font-weight: bold;
