@@ -304,7 +304,7 @@
 .review-question {
     color: rgb(134, 134, 134);
     font-size: 20px;
-    padding: 20px;
+    padding: 20px 0 0 20px;
 }
 
 .stars {
@@ -344,4 +344,28 @@
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
+}
+
+/* タブレット表示 */
+@media screen and (max-width: 850px) {
+    .aside__title {
+        font-size: 18px;
+    }
+
+    .aside__item-link {
+        font-size: 15px;
+        margin: 10px;
+    }
+
+    .complete-message {
+        font-size: 28px;
+    }
+
+    .review-question {
+        font-size: 16px;
+    }
+
+    .stars label{
+        font-size: 60px;
+    }
 }

@@ -7,7 +7,7 @@
             マイリスト
         </a>
     </div>
-    <div class="tab__content mt-4">
+    <div class="tab__content">
         @if ($activeTab === 'recommend')
             @forelse($items as $item)
                 <div class="item-card">

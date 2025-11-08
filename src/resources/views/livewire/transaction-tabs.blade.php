@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="tab__content mt-4">
+    <div class="tab__content">
         @if ($tab === 'selling')
             @forelse ($sellingItems as $sellingItem)
                 <div class="item-card">
